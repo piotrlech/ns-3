@@ -121,6 +121,36 @@ void PIOHelper::SetDefRoute (Ptr<Node> node, Ipv4Address nextHop, uint32_t inter
   }
 }
 
+Ptr<PIORoutingProtocol>
+PIOHelper::GetPIORouting (Ptr<Ipv4> ipv4) const
+{
+  //NS_LOG_FUNCTION (this);
+  Ptr<Ipv4RoutingProtocol> ipv4rp = ipv4->GetRoutingProtocol ();
+  NS_ASSERT_MSG (ipv4rp, "No routing protocol associated with Ipv4");
+  if (DynamicCast<PIORoutingProtocol> (ipv4rp))
+    {
+      //NS_LOG_LOGIC ("Static routing found as the main IPv4 routing protocol.");
+      return DynamicCast<PIORoutingProtocol> (ipv4rp);
+    }
+  if (DynamicCast<Ipv4ListRouting> (ipv4rp))
+    {
+      Ptr<Ipv4ListRouting> lrp = DynamicCast<Ipv4ListRouting> (ipv4rp);
+      int16_t priority;
+      for (uint32_t i = 0; i < lrp->GetNRoutingProtocols ();  i++)
+        {
+          //NS_LOG_LOGIC ("Searching for static routing in list");
+          Ptr<Ipv4RoutingProtocol> temp = lrp->GetRoutingProtocol (i, priority);
+          if (DynamicCast<PIORoutingProtocol> (temp))
+            {
+              //NS_LOG_LOGIC ("Found static routing in list");
+              return DynamicCast<PIORoutingProtocol> (temp);
+            }
+        }
+    }
+  //NS_LOG_LOGIC ("PIO routing not found");
+  return 0;
+}
+
 void
 PIOHelper::ExcludeInterface (Ptr<Node> node, uint32_t interface)
 {

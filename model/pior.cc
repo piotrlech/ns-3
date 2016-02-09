@@ -129,64 +129,6 @@ PIORoutingProtocol::DoInitialize ()
 
   int n = m_ipv4->GetObject<Node>()->GetId();
   NS_LOG_LOGIC ("DoInitialize: node=" << n);
-
-  if (n == 2)
-    {
-      AddHostRouteTo (Ipv4Address ("127.0.0.1"), 0, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("192.168.16.0"), Ipv4Mask ("/30"), 1, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("15.16.16.0"), Ipv4Mask ("/24"), 2, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("203.15.19.0"), Ipv4Mask ("/24"), 3, 0, 2, Seconds (0), Seconds (0));
-
-      //AddNetworkRouteTo (Ipv4Address ("172.16.1.0"), Ipv4Mask ("/30"), Ipv4Address ("15.16.16.2"), 2, 2, 4, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("172.16.1.0"), Ipv4Mask ("/30"), Ipv4Address ("203.15.19.2"), 3, 3, 4, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("10.10.10.0"), Ipv4Mask ("/24"), Ipv4Address ("15.16.16.2"), 2, 2, 4, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("11.118.126.0"), Ipv4Mask ("/24"), Ipv4Address ("15.16.16.2"), 2, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("201.13.15.0"), Ipv4Mask ("/24"), Ipv4Address ("15.16.16.2"), 2, 1, 2, Seconds (500), Seconds (500));
-
-      //AddHostRouteTo (Ipv4Address host, uint32_t interface, uint16_t metric, uint16_t sequenceNo, Time timeoutTime, Time garbageCollectionTime)
-      //                                                              Ipv4Address nextHop,
-      //AddNetworkRouteTo (Ipv4Address network, Ipv4Mask networkMask, uint32_t interface, uint16_t metric, uint16_t sequenceNo, Time timeoutTime, Time garbageCollectionTime)
-      //AddDefaultRouteTo (Ipv4Address nextHop, uint32_t interface)
-      //AddNetworkRouteTo (Ipv4Address ("0.0.0.0"), Ipv4Mask::GetZero (), nextHop, interface, 0, 0, Seconds (0), Seconds (0));
-      //AddNetworkRouteTo (ifaceNetworkAddress, ifaceNetMask, interface, 0, 0, Seconds (0), Seconds (0));
-      //AddNetworkRouteTo (Ipv4Address ("193.168.16.0"), Ipv4Mask ("/30"), 1, 42, 8, Seconds (500), Seconds (500));
-    }
-  else if (n == 3)
-    {
-      AddHostRouteTo (Ipv4Address ("127.0.0.1"), 0, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("15.16.16.0"), Ipv4Mask ("/24"), 1, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("201.13.15.0"), Ipv4Mask ("/24"), 2, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("11.118.126.0"), Ipv4Mask ("/24"), 3, 0, 2, Seconds (0), Seconds (0));
-
-      AddNetworkRouteTo (Ipv4Address ("10.10.10.0"), Ipv4Mask ("/24"), Ipv4Address ("11.118.126.2"), 3, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("203.15.19.0"), Ipv4Mask ("/24"), Ipv4Address ("11.118.126.2"), 3, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("172.16.1.0"), Ipv4Mask ("/30"), Ipv4Address ("201.13.15.2"), 2, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("192.168.16.0"), Ipv4Mask ("/30"), Ipv4Address ("15.16.16.1"), 1, 1, 2, Seconds (500), Seconds (500));
-    }
-  else if (n == 4)
-    {
-      AddHostRouteTo (Ipv4Address ("127.0.0.1"), 0, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("203.15.19.0"), Ipv4Mask ("/24"), 1, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("10.10.10.0"), Ipv4Mask ("/24"), 2, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("11.118.126.0"), Ipv4Mask ("/24"), 3, 0, 2, Seconds (0), Seconds (0));
-
-      AddNetworkRouteTo (Ipv4Address ("172.16.1.0"), Ipv4Mask ("/30"), Ipv4Address ("10.10.10.2"), 2, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("201.13.15.0"), Ipv4Mask ("/24"), Ipv4Address ("10.10.10.2"), 2, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("15.16.16.0"), Ipv4Mask ("/24"), Ipv4Address ("203.15.19.1"), 1, 1, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("192.168.16.0"), Ipv4Mask ("/30"), Ipv4Address ("203.15.19.1"), 1, 1, 2, Seconds (500), Seconds (500));
-    }
-  else if (n == 5)
-    {
-      AddHostRouteTo (Ipv4Address ("127.0.0.1"), 0, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("201.13.15.0"), Ipv4Mask ("/24"), 1, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("10.10.10.0"), Ipv4Mask ("/24"), 2, 0, 2, Seconds (0), Seconds (0));
-      AddNetworkRouteTo (Ipv4Address ("172.16.1.0"), Ipv4Mask ("/30"), 3, 0, 2, Seconds (0), Seconds (0));
-
-      AddNetworkRouteTo (Ipv4Address ("192.168.16.0"), Ipv4Mask ("/30"), Ipv4Address ("201.13.15.1"), 1, 1, 4, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("203.15.19.0"), Ipv4Mask ("/24"), Ipv4Address ("201.13.15.1"), 1, 1, 4, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("11.118.126.0"), Ipv4Mask ("/24"), Ipv4Address ("201.13.15.1"), 1, 2, 2, Seconds (500), Seconds (500));
-      AddNetworkRouteTo (Ipv4Address ("15.16.16.0"), Ipv4Mask ("/24"), Ipv4Address ("201.13.15.1"), 1, 2, 2, Seconds (500), Seconds (500));
-    }
 }
 
 void 

@@ -105,6 +105,16 @@ public:
    */
   void ExcludeInterface (Ptr<Node> node, uint32_t interface);
 
+  /**
+   * Try and find the static routing protocol as either the main routing
+   * protocol or in the list of routing protocols associated with the
+   * Ipv4 provided.
+   *
+   * \param ipv4 the Ptr<Ipv4> to search for the static routing protocol
+   * \returns Ipv4StaticRouting pointer or 0 if not found
+   */
+  Ptr<PIORoutingProtocol> GetPIORouting (Ptr<Ipv4> ipv4) const;
+
 private:
   /**
    * \brief Assignment operator declared private and not implemented to disallow
